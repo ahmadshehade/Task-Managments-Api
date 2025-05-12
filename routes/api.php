@@ -15,7 +15,7 @@ Route::middleware(['auth:api'])->group(function () {
 
     Route::get('get/all/tasks',[TaskController::class,'index'])->name('tasks.indx');
     Route::get('get/task/{task}',[TaskController::class,'show'])->name('tasks.show');
-    Route::get('search/tasks/by/priority',[TaskController::class,'searchByPriority'])->name('');
+    Route::get('search/tasks/by/priority',[TaskController::class,'searchByPriority'])->name('task.search');
     ############################################ Comment################################################
     Route::post('add/comment',[CommentController::class,'store'])->name('comment.store');
     Route::post('make/replay',[CommentController::class,'makeReplay'])->name('comment.makeReplay');
