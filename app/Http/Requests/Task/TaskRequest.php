@@ -11,12 +11,20 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 class TaskRequest extends FormRequest
 {
+    /**
+     * Summary of authorize
+     * @return bool
+     */
     public function authorize(): bool
     {
         $user = auth('api')->user();
         return $user && $user->rule === 'admin';
     }
 
+    /**
+     * Summary of prepareForValidation
+     * @return void
+     */
     protected function prepareForValidation(): void
     {
         if ($this->title) {
@@ -26,6 +34,10 @@ class TaskRequest extends FormRequest
         }
     }
 
+    /**
+     * Summary of rules
+     * @return array|array{description: string[], due_date: array<string|ValidDueDate>, name: array<string|\Illuminate\Validation\Rules\In>, priority: string[], title: array<string|\Illuminate\Validation\Rules\Unique>, user_id: string[]|array{description: string[], due_date: array<string|ValidDueDate>, name: array<string|\Illuminate\Validation\Rules\In>, priority: string[], title: string[], user_id: string[]}}
+     */
     public function rules(): array
     {
         if ($this->routeIs('task.store')) {
@@ -53,6 +65,10 @@ class TaskRequest extends FormRequest
         return [];
     }
 
+/**
+ * Summary of messages
+ * @return array|array{description.min: string, description.required: string, description.string: string, due_date.date: string, due_date.required: string, name.in: string, name.max: string, name.string: string, priority.in: string, priority.required: string, title.max: string, title.required: string, title.string: string, user_id.exists: string, user_id.integer: string|array{description.min: string, description.string: string, due_date.date: string, name.in: string, name.max: string, name.required: string, name.string: string, priority.in: string, title.max: string, title.string: string, title.unique: string, user_id.exists: string, user_id.integer: string}}
+ */
 public function messages(): array
 {
     if ($this->routeIs('task.store')) {
@@ -107,6 +123,10 @@ public function messages(): array
 }
 
 
+    /**
+     * Summary of attributes
+     * @return array{description: string, due_date: string, name: string, priority: string, title: string, user_id: string}
+     */
     public function attributes(): array
     {
         return [
@@ -119,6 +139,12 @@ public function messages(): array
         ];
     }
 
+    /**
+     * Summary of failedValidation
+     * @param \Illuminate\Contracts\Validation\Validator $validator
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
+     * @return never
+     */
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(

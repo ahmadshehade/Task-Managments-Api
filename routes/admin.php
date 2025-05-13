@@ -36,7 +36,7 @@ Route::prefix('admin')->middleware(['managerTask'])->group(function(){
      Route::put('restore/statuse/{id}',[StatusController::class,'restoreStatus'])->name('status.restore');
      Route::delete('force/delete/status/{id}',[StatusController::class,'forceDeleteStatus'])->name('status.forceDelete');
      ############################################################################################################################
-
+     
 
 
 });

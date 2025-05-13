@@ -8,11 +8,19 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 class CommentRequest extends FormRequest
 {
+    /**
+     * Summary of authorize
+     * @return bool
+     */
     public function authorize(): bool
     {
         return auth('api')->check();
     }
 
+    /**
+     * Summary of rules
+     * @return array|array{body: string[], task_id: string[]}
+     */
     public function rules(): array
     {
         if ($this->routeIs('comment.store')) {
@@ -32,6 +40,11 @@ class CommentRequest extends FormRequest
         return [];
     }
 
+
+/**
+ * Summary of messages
+ * @return array|array{body.max: string, body.min: string, body.required: string, body.string: string, task_id.exists: string, task_id.integer: string, task_id.required: string|array{body.max: string, body.min: string, body.required: string, body.string: string, task_id.exists: string, task_id.integer: string}}
+ */
 public function messages(): array
 {
     if ($this->routeIs('comment.store')) {
@@ -57,10 +70,16 @@ public function messages(): array
         ];
     }
 
-    return []; 
+    return [];
 }
 
 
+    /**
+     * Summary of failedValidation
+     * @param \Illuminate\Contracts\Validation\Validator $validator
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
+     * @return never
+     */
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(

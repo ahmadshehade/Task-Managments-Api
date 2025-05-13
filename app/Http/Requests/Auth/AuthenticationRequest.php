@@ -36,7 +36,7 @@ class AuthenticationRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [];  // بداية بالقواعد الفارغة
+        $rules = [];  
 
         if ($this->routeIs('register')) {
             $rules = array_merge($rules, [
