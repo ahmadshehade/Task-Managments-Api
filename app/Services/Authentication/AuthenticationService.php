@@ -78,6 +78,11 @@ public function register($request)
                     ];
                     return $data;
             }
+            $data=[
+                'message'=>'try Again !',
+                'code'=>404,
+            ];
+            return $data;
         }
         catch (\Exception $e) {
             throw new HttpResponseException(response()->json([

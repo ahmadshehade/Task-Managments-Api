@@ -21,14 +21,26 @@ class Task extends Model
    protected $guarded=['user_id'];
 
 
+   /**
+    * Summary of statuses
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany<Status, Task>
+    */
    public function statuses(){
     return $this->hasMany(Status::class,'task_id','id');
    }
 
+   /**
+    * Summary of user
+    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, Task>
+    */
    public function user(){
     return $this->belongsTo(User::class,'user_id','id');
    }
 
+   /**
+    * Summary of comments
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany<Comment, Task>
+    */
    public function comments(){
 
     return $this->hasMany(Comment::class,'task_id','id');

@@ -9,9 +9,11 @@ use Symfony\Component\HttpFoundation\Response;
 class TaskMiddleware
 {
     /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * Summary of handle
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
+     * @throws \Exception
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handle(Request $request, Closure $next): Response
     {

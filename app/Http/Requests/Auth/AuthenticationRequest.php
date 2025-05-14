@@ -36,7 +36,7 @@ class AuthenticationRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [];  
+        $rules = [];
 
         if ($this->routeIs('register')) {
             $rules = array_merge($rules, [
@@ -111,6 +111,12 @@ class AuthenticationRequest extends FormRequest
     }
 
 
+   /**
+    * Summary of failedValidation
+    * @param \Illuminate\Contracts\Validation\Validator $validator
+    * @throws \Illuminate\Http\Client\HttpClientException
+    * @return never
+    */
    public function failedValidation(\Illuminate\Contracts\Validation\Validator $validator){
 
     throw new HttpClientException(
